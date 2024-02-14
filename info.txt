@@ -1,0 +1,38 @@
+Click derecho en la solucion para crear un nuevo proyecto de biblioteca de clases CampeonatoFIFA.Core
+Borrar la clase predeterminada
+Crear clase de GlobalUsings
+Crear una interface public interface SeleccionRepositorio -> Task<IEnumerable<Seleccion>> ObtenerTodos();
+                                                             Task<Seleccion> Obtener{int id};
+                                                             Task<Seleccion> Agregar{Seleccion Seleccion};
+                                                             Task<Seleccion> Modificar{Seleccion Seleccion};
+                                                             Task<bool> Eliminar{int id};
+                                                             
+Crear una carpeta repositorio en el Core -> Crear una interface public interface SeleccionRepositorio
+                                                             Task<IEnumerable<Campeonato>> ObtenerTodos();
+                                                             Task<Campeonato> Obtener{int id};
+                                                             Task<Campeonato> Agregar{Campeonato Campeonato};
+                                                             Task<Campeonato> Modificar{Campeonato Campeonato};
+                                                             Task<bool> Eliminar{int id};
+
+Crear una carpeta Servicios dentro de Repositorios
+
+Creamos un nuevo proyecto en la solución libreria de clases CampeonatosFIFA.Infraestructura.Persistencia
+Borrar la clase predeterminada
+Crear clase de GlobalUsings
+Creamos una carpeta Contexto
+Abrimos la consola de paquetes NuGet y se ingresa el comando Install -Package Microsoft.EntityFrameworkCore.SqlServer se selecciona el proyecto de la capa de Persistencia
+Crear la clase public class CampeonatoFIFAContext:DBContext
+                 public CampeonatoFIFAContext(DbContextOptions<CampeonatoFIFAContext> options): base(options)
+                 {
+                 }
+
+                 public DbSet<Seleccion> Selecciones { get; set; }
+                 public DbSet<Campeonato> Campeonatos { get; set; }
+                 protected override void OnModelCreating(ModelBuilder builder)
+                 {
+                   builder.Entity<Seleccion>(entity => 
+                   {
+                     entidad.HasKey();
+                   }
+                   );
+                 }
